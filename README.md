@@ -330,4 +330,4 @@ d1374b15c6864c3682ddbed2a247a826
 
 67. Click Send; you should get a 200 OK response with only flights to LAX.
 <img src="./images/proxy_success_200.png">
-![proxy success](images/proxy_success_200.png)
+![proxy success](/images/proxy_success_200.png)
