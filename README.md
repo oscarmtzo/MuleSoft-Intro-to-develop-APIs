@@ -156,3 +156,177 @@ This training will make calls to and create a secured API.
     <img src="./images/deleted_flight.png" width="250px"/>
     <figcaption>DELETE HTTP method</figcaption>
 </figure>
+
+19. Remove the URI parameter from the request http://training4-american-ws.cloudhub.io/api/flights 
+20. Click the send button; you should get a 405 response with the message Method not allowed
+<figure>
+    <img src="./images/not_allowed_405.png" width="250px"/>
+    <figcaption>DELETE HTTP method not allowed</figcaption>
+</figure>
+
+**Make a POST request to add data**
+
+21. Change the method to POST. 
+22. Click the send button, you should get a 415 response with the message Unsupported media type
+<figure>
+    <img src="./images/post_415_not_allowed.png" width="250px"/>
+    <figcaption>POST HTTP method unsupported media type</figcaption>
+</figure>
+
+23. Click the Add button in the header area.
+24. Select Content-type in the resultant Header name drop-down menu.
+25. Type app in the Header value field then select application/json.
+<img src="./images/header_post.png" width="250px"/>
+
+26. Select body tab.
+27. Return to the course ``snippets.txt`` file and cop the vlue for American Flights API post body. 
+```
+{
+  "code": "GQ574",
+  "price": 399,
+  "departureDate": "2016/12/20",
+  "origin": "ORD",
+  "destination": "SFO",
+  "emptySeats": 200,
+  "plane": {"type": "Boeing 747", "totalSeats": 400}
+}
+```
+
+28. Return to Advanced REST Client and paste the code in the body text area.
+<figure>
+    <img src="./images/post_body_raw_input.png" width="250px"/>
+    <figcaption>POST body raw input</figcaption>
+</figure>
+
+29. Click the Send button, you should see a 2021 Created response with the message Flight added (but not really).
+<figure>
+    <img src="./images/raw_response_not_really.png" width="250px"/>
+    <figcaption>POST response, http response 201 - Created</figcaption>
+</figure>
+
+30. Return to the request body and remove the plane field and value from the request body.
+31. Remove the comma after the emptySeats key/value pair 
+<img src="./images/raw_.edit_post.png" width="250px"/>
+
+32. Send the request, the message should still post succesfully.
+33. In the request body, remove the  emptySeats key/value pair.
+34. Delete the comma after the destination key/value pair
+
+<figure>
+    <img src="./images/emptySeats_post.png" width="250px">
+    <figcaption>POST bad Request</figcaption>
+</figure>
+35. Send the request, you should see a 400 Bad Request response with the messageBad request.
+<figure>
+    <img src="./images/post_bad_request.png" width="250px">
+    <figcaption>POST bad Request</figcaption>
+</figure>
+
+**Make a PUT request to update data**
+
+36. Change the method to PUT. 
+37. Add a flight ID of 3 to the URL.
+38. Click the send button; you shouldget a 400 Bad Request.
+<figure>
+    <img src="./images/post_bad_request_2.png" width="250px">
+    <figcaption>POST bad Request</figcaption>
+</figure>
+
+39. In the request body field, press Cmd+Z or Ctrl+Z until the emptySeats field is added back.
+40. Send the request; you should get a 200 OK response with the message Flightupdated (but not really).
+<figure>
+    <img src="./images/put_success_id.png" width="250px">
+    <figcaption>PUT succesful http method</figcaption>
+</figure>
+
+**Make a request to a secured API**
+
+41. Remove the Content-Type header by selecting the Headerstab then clicking the Remove this parameter buttonnext to the header.
+42. Change the method to GET. 
+43. Change the request URL to http://training4-american-api.cloudhub.io/flights/3 .
+
+*Note: The -ws in the URL has been changed to -apiand the /api removed.*
+
+44. Click the send button; you shouldget a 401 Unauthorized response with themessage Invalidclientidor secret.
+
+<figure>
+    <img src="./images/401_unathorized.png" width="250px">
+    <figcaption>401 unathorized response</figcaption>
+</figure>
+
+45. Return to the course ``snippets.txt`` file and copy the value for the American Flights API client_id.
+```
+* American Flights API client_id for APDev fictitious application
+d1374b15c6864c3682ddbed2a247a826
+```
+46. Return to Advanced REST Client and add a header called client_id.
+
+47. Set client_id to the value you copied fromthe snippets.txtfile.
+48. Return to the course ``snippets.txt`` file and copy the value for the American Flights API client_secret.
+49. Return to Advanced REST Clientand add a second headercalled client_secret.
+```
+* American Flights API client_secret for APDev fictitious application
+4a87fe7e2e43488c927372AEF981F066
+```
+50. Set client_secret to the value you copied fromthe snippets.txtfile.
+
+<figure>
+    <img src="./images/headers_modified.png" width="250px">
+    <figcaption>Custom headers on Advanced REST Client </figcaption>
+</figure>
+
+*Note: The client credentials in the snippets file may be different than what is shown here; the values in the snippets file differ for instructor-led and self-study training classes.*
+
+51. Click the send button; you should get data for flight 3 again.
+
+<figure>
+    <img src="./images/custom_headers_200.png" width="250px">
+    <figcaption>Response to Custom headers on Advanced REST Client </figcaption>
+</figure>
+
+52. Click the send button several more times; you shouldget a 429 Too Many Requests response with the message Quota has beenexceeded.
+
+*Note: For the self-study training class, the API service level agreement (SLA) for the application with your client ID and secret has been set to allow three API calls per minute while, for the instructor-led class, the SLA allows for a higher number to accommodate shared use.*
+
+<figure>
+    <img src="./images/too_many_responses.png" width="250px">
+    <figcaption>Too many responses</figcaption>
+</figure>
+
+### Using the API console in the API portal to make requests to the API using a mocking service
+
+53. Return to the browser window with the American Flights API portal at https://anypoint.mulesoft.com/exchange/portals/muletraining.
+54. In the left-side navigation click the GET method for /flights.
+55. Review the Headers and Responses sections.
+56. In the Responses section, look at the output example.
+57. In the API console located on the right side of the page, make sure the Mocking Service endpoint is selected.
+
+58. Look at the endpoint URL that isdisplayed.59.Selectthe Show optional parameters checkbox.
+60. Select LAX in the destination drop-down menu.
+61. Enterany valuesforclient_idand client_secret.
+62. Click Send; you should getthe example flights that areto SFO and ORD.
+
+<figure>
+    <img src="./images/request_API_portal.png" width="100px">
+    <img src="./images/response_200_.API_portalpng.png" width="100px">
+    <figcaption>API console for retrieving data</figcaption>
+</figure>
+
+**Makerequests to the API using an API proxy endpoint**
+
+63. At the top of the API console, change the endpoint to Production –Rate limiting SLA based policy.
+64. Look at the endpoint URL that is displayed.
+65. Click Send; you should get a 401 Unauthorized response.
+<img src="./images/proxy_response_query_API_portal.png" width="400px">
+
+66. Copy and paste the client_id and client_secret values from the course ``snippets.txt`` file. 
+```
+* American Flights API client_id for APDev fictitious application
+d1374b15c6864c3682ddbed2a247a826
+
+* American Flights API client_secret for APDev fictitious application
+4a87fe7e2e43488c927372AEF981F066
+```
+
+67. Click Send; you should get a 200 OK response with only flights to LAX.
+<img src="./images/proxy_success_200.png">
