@@ -562,3 +562,4 @@ Due to data return is in Java format, it can't be display in Advanced REST Clien
 * This lets you develop Mule applications while following API lifecycle development practices from within Anypoint Studio 
 
 # Deploying and Managing APIs
+![proxy success](/images/proxy_success_200.png)
