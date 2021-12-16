@@ -563,3 +563,15 @@ Due to data return is in Java format, it can't be display in Advanced REST Clien
 
 # Deploying and Managing APIs
 ![proxy success](/images/proxy_success_200.png)
+
+* Options for deploying a MuleSoft Application
+    1. *CloudHub*
+        * Uses AWS own MuleSoft servers 
+    2. *Customer-hosted Mule runtimes*
+        * Hosted on bare metal servers or cloud providers: AWS Azure, and Pivotal Cloud Foundry 
+    3. *Anypoint Runtime Fabric*
+        * Customer hosted container service of the runtime plane.
+
+## Deploying applications to Cloudhub
+* You can deploy from Anypoint Studio or from Anypoint Platform using 
+
